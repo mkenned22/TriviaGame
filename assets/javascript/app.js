@@ -17,12 +17,12 @@ $(document).ready(function() {
     function goHome(){
         createPageLayout();
         $("#content").html("<h1>Let's Play Trivia</h1><br>");
-        createPlayButton();
+        createPlayButton("Play");
     }
 
-    function createPlayButton(){
+    function createPlayButton(text){
         var button = $("<button>");
-        button.html("<p>Play</p>");
+        button.html("<p>"+text+"</p>");
         button.on("click",playGame);
         button.addClass("btn btn-primary btn-lg");
         $("#content").append(button);
@@ -76,9 +76,12 @@ $(document).ready(function() {
         var array = gameData[i].incorrect_answers;
         array.splice(getRandomInt(array.length +1),0,gameData[i].correct_answer);
         for(j=0;j<array.length;j++){
+            var choice = array[j]
+            choice = choice.replace(/[^a-zA-Z0-9 ]/g, "");
+            choice = choice.replace(/ /g,'');
             var button = $("<button>");
             button.html("<p>"+letters[j]+array[j]+"</p>");
-            button.attr("id",array[j]);
+            button.attr("id",choice);
             button.on("click",displayAnswer);
             button.addClass("btn btn-primary btn-lg text-left btn-wrap-text");
             $("#answers").append(button);
@@ -91,18 +94,26 @@ $(document).ready(function() {
     function displayAnswer(){
         stop();
         var answer = this.id;
+        var id = "#"+answer;
+        var correctAnswer = gameData[i].correct_answer;
+        correctAnswer = correctAnswer.replace(/[^a-zA-Z0-9 ]/g, "");
+        correctAnswer = correctAnswer.replace(/ /g,'');
+        var correctid = "#"+correctAnswer;
+        console.log(answer);
+        console.log(correctAnswer);
         if(time === 0){
-            $("#question").append("<p>Time's up!<br>The correct answer is: " +gameData[i].correct_answer+ "</p>");
-            answerChoices.push('<p class="incorrect">No answer provided</p><p class="correct">&nbsp;&nbsp;'+gameData[i].correct_answer+'</p>')
+            $("#question").append("<p>Time's up!</p>");
+            $(id).css("background-color","green");
         }
-        else if(answer === gameData[i].correct_answer){
+        else if(answer === correctAnswer){
             correctAnswers++
-            $("#question").append("<p>That is correct!</p>");;
-            answerChoices.push('<p class="correct">'+answer+'</p>');
+            $(id).css("background-color","green");
+            $("#question").append("<p class='correct'>That is correct!</p>");;
         }
         else{
-            $("#question").append("<p>That is incorrect!<br>The correct answer is: " +gameData[i].correct_answer+ "</p>");
-            answerChoices.push('<p class="incorrect">'+answer+'</p><p class="correct">&nbsp;&nbsp;'+gameData[i].correct_answer+'</p>')
+            $(id).css("background-color","red");
+            $(correctid).css("background-color","green");
+            $("#question").append("<p class='incorrect'>That is incorrect!</p>");
         }
         
         setTimeout(function(){
@@ -120,17 +131,9 @@ $(document).ready(function() {
         createPageLayout();
         $("#content").html("<div><h1>Game Over</h1></div>")
         $("#content").append("<div><h5>You answered "+correctAnswers+" of "+gameData.length+" questions correctly.</h5></div>")
-        for(j=1;j<gameData.length+1;j++){
-
-            var string = "<div class='correctAnswers'><strong>Question "+j+")</strong> " +gameData[j-1].question+"<br><strong>Your Answer:</strong> "+answerChoices[j-1]+"</div>"
-            $("#content").append(string);
-            $("#content").append($("<br>"));
-
-        }
-        i=0;
         correctAnswers = 0;
         answerChoices = [];
-        createPlayButton();
+        createPlayButton("Play Again");
     }
     
     function start() {
