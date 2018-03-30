@@ -1,0 +1,56 @@
+.incorrect{
+    color:red;
+    text-decoration: line-through;
+}
+.correct{
+    color:green;
+}
+button{
+    width: 400px;
+    margin: 10px 0px 10px 0px;
+    
+}
+.btn{
+    white-space: normal;
+}
+h5,.correctAnswers,#question{
+    max-width: 400px;
+}
+div{
+    max-width:400px;
+    text-align:center;
+    background-color: lightgray;
+}
+
+.row{
+    display: inline-block;
+    height: 100vh;
+}
+
+.col-md-12{
+    text-align: center;
+    margin: auto;
+    position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+h1{
+    text-align: left;
+    display: inline-block;
+}
+
+#title{
+    text-align: left;
+}
+#question{
+    text-align: left;
+}
+#answer0,#answer1,#answer2,#answer3{
+    text-align: left;
+}
+
+#timer{
+    text-align: left;
+}
+
