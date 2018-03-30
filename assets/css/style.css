@@ -1,3 +1,10 @@
+body{
+    height: 100vh;
+    background-image: url("../images/question-mark-background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
 .incorrect{
     color:red;
     text-decoration: line-through;
@@ -5,52 +12,32 @@
 .correct{
     color:green;
 }
-button{
-    width: 400px;
-    margin: 10px 0px 10px 0px;
-    
-}
 .btn{
+    width: 360px;
     white-space: normal;
 }
-h5,.correctAnswers,#question{
-    max-width: 400px;
-}
-div{
-    max-width:400px;
-    text-align:center;
-    background-color: lightgray;
-}
-
 .row{
     display: inline-block;
     height: 100vh;
+    background-color: lightsalmon;
+    opacity: .75;
 }
 
 .col-md-12{
     text-align: center;
     margin: auto;
     position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+    top: 50%;
+    transform: translateY(-50%); 
 }
 
-h1{
-    text-align: left;
-    display: inline-block;
+div{
+    max-width:400px;
+    text-align:center;
+    
 }
 
-#title{
-    text-align: left;
-}
-#question{
-    text-align: left;
-}
-#answer0,#answer1,#answer2,#answer3{
-    text-align: left;
-}
-
-#timer{
+#timer, #question, #title, .correctAnswers{
     text-align: left;
 }
 

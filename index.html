@@ -44,7 +44,7 @@
 
             function goHome(){
                 createPageLayout();
-                $("#content").html("<p><h1>Let's Play Trivia</h1></p><br>");
+                $("#content").html("<h1>Let's Play Trivia</h1><br>");
                 createPlayButton();
             }
 
@@ -66,11 +66,13 @@
                 var question = $("<div>");
                 question.attr("id","question");
                 $("#content").append(question);
+                $("#content").append($("<br>"));
                 
                 for(j=0;j<4;j++){
                     var answer = $("<div>");
                     answer.attr("id","answer"+j);
                     $("#content").append(answer);
+                    $("#content").append($("<br>"));
                 }
 
                 var timer = $("<div>");
@@ -123,16 +125,16 @@
                 var answer = this.id;
                 if(time === 0){
                     $("#question").append("<p>Time's up!<br>The correct answer is: " +gameData[i].correct_answer+ "</p>");
-                    answerChoices.push('<span class="incorrect">No answer provided</span><span class="correct">&nbsp;&nbsp;'+gameData[i].correct_answer+'</span>')
+                    answerChoices.push('<p class="incorrect">No answer provided</p><p class="correct">&nbsp;&nbsp;'+gameData[i].correct_answer+'</p>')
                 }
                 else if(answer === gameData[i].correct_answer){
                     correctAnsers++
                     $("#question").append("<p>That is correct!</p>");;
-                    answerChoices.push('<span class="correct">'+answer+'</span>');
+                    answerChoices.push('<p class="correct">'+answer+'</p>');
                 }
                 else{
                     $("#question").append("<p>That is incorrect!<br>The correct answer is: " +gameData[i].correct_answer+ "</p>");
-                    answerChoices.push('<span class="incorrect">'+answer+'</span><span class="correct">&nbsp;&nbsp;'+gameData[i].correct_answer+'</span>')
+                    answerChoices.push('<p class="incorrect">'+answer+'</p><p class="correct">&nbsp;&nbsp;'+gameData[i].correct_answer+'</p>')
                 }
                 
                 setTimeout(function(){
@@ -152,7 +154,7 @@
                 $("#content").append("<div><h5>You answered "+correctAnsers+" of "+gameData.length+" questions correctly.</h5></div>")
                 for(j=1;j<gameData.length+1;j++){
 
-                    var string = "<div class='correctAnswers'> Question "+j+") " +gameData[j-1].question+"<br>Your Answer: "+answerChoices[j-1]+"</div>"
+                    var string = "<div class='correctAnswers'><strong>Question "+j+")</strong> " +gameData[j-1].question+"<br><strong>Your Answer:</strong> "+answerChoices[j-1]+"</div>"
                     $("#content").append(string);
                     $("#content").append($("<br>"));
 
