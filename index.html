@@ -66,13 +66,11 @@
                 var question = $("<div>");
                 question.attr("id","question");
                 $("#content").append(question);
-                $("#content").append($("<br>"));
                 
                 for(j=0;j<4;j++){
-                    var answer = $("<div>");
-                    answer.attr("id","answer"+j);
-                    $("#content").append(answer);
-                    $("#content").append($("<br>"));
+                    var answers = $("<div>");
+                    answers.attr("id","answers");
+                    $("#content").append(answers);
                 }
 
                 var timer = $("<div>");
@@ -99,6 +97,7 @@
             }
 
             function getQuestion(){
+                $("#answers").empty();
                 var letters = ["a) ", "b) ", "c) ", "d) "];
                 $("#title").html("<h1>Question " +(parseInt(i)+1)+ "</h1>");
                 $("#question").html("<h5>" +gameData[i].question+ "</h5>");
@@ -106,14 +105,11 @@
                 array.splice(getRandomInt(array.length +1),0,gameData[i].correct_answer);
                 for(j=0;j<array.length;j++){
                     var button = $("<button>");
-                    var div = $("<div>");
                     button.html("<p>"+letters[j]+array[j]+"</p>");
                     button.attr("id",array[j]);
                     button.on("click",displayAnswer);
                     button.addClass("btn btn-primary btn-lg text-left btn-wrap-text");
-                    $("#answer"+j).html(button);
-                    
-                    
+                    $("#answers").append(button);
                 }
 
                 reset();

@@ -17,6 +17,8 @@ body{
     white-space: normal;
     margin-right: 10px;
     margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .row{
     display: inline-block;
@@ -25,7 +27,6 @@ body{
     opacity: .75;
     width: 100%;
 }
-
 .col-md-12{
     text-align: center;
     margin: auto;
@@ -33,13 +34,10 @@ body{
     top: 50%;
     transform: translateY(-50%); 
 }
-
 div{
     max-width:400px;
     text-align:center;
-    
 }
-
 #timer, #question, #title, .correctAnswers{
     text-align: left;
 }
