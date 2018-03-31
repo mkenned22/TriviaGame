@@ -7,12 +7,11 @@ body{
 }
 .incorrect{
     color:red;
-    text-decoration: line-through;
 }
 .correct{
     color:green;
 }
-.btn{
+.btn, select{
     width: 90%;
     white-space: normal;
     margin-right: 10px;

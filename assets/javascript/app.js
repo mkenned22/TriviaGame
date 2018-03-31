@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     // go to the home page
     function goHome() {
+        
         // default page layout
         createPageLayout();
         $("#content").html("<h1>IQ Trivia</h1>");
@@ -16,6 +17,7 @@ $(document).ready(function () {
     // makes the ajax call to get the data from opentdb
     // lays out the page structure
     function playGame() {
+        i = 0;
         var categories = {
             'Any Category': '',
             'General Knowledge': 'category=9',
@@ -80,7 +82,7 @@ $(document).ready(function () {
 
     // display the specific question in loop
     function getQuestion() {
-        
+
         // wipe the previous answers
         $("#answers").empty();
         
@@ -106,6 +108,7 @@ $(document).ready(function () {
             var button = $("<button>");
             button.html("<p>" + letters[j] + array[j] + "</p>");
             button.attr("id", choice);
+            button.addClass("answerButton");
             button.on("click", displayAnswer);
             button.addClass("btn btn-primary btn-lg text-left btn-wrap-text");
             $("#answers").append(button);
@@ -118,6 +121,9 @@ $(document).ready(function () {
 
     // once an answer is chosen, or the timer runs out...
     function displayAnswer() {
+
+        //disable the answer buttons
+        $("button").attr("disabled",true);
 
         // stop the clock
         stop();
@@ -137,17 +143,17 @@ $(document).ready(function () {
 
         // if time expires...
         if (time === 0) {
-            $("#question").append("<p>Time's up!</p>");
+            $("#question").append("<h6 class='incorrect'>Time's up!</h6>");
         }
         // if correct answer...
         else if (answer === correctAnswer) {
             correctAnswers++
-            $("#question").append("<p class='correct'>That is correct!</p>");;
+            $("#question").append("<h6 class='correct'>That is correct!</h6>");;
         }
         // if incorrect answer...
         else {
             $(id).css("background-color", "red");
-            $("#question").append("<p class='incorrect'>That is incorrect!</p>");
+            $("#question").append("<h6 class='incorrect'>That is incorrect!</h6>");
         }
 
         // wait 4 seconds before moving on to next question or the end of the game
