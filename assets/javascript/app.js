@@ -173,9 +173,15 @@ $(document).ready(function () {
 
         // restore default page layout  
         createPageLayout();
-
-        $("#content").html("<div><h1>Game Over</h1></div>")
+        if(correctAnswers === 10){$("#content").html("<div><h1>You win!</h1></div>")}
+        else{$("#content").html("<div><h1>Game Over</h1></div>")}
         $("#content").append("<div><h5>You answered " + correctAnswers + " of " + gameData.length + " questions correctly.</h5></div>")
+        
+        if(correctAnswers < 4){$("#content").append("<div><h5>Level: Novice</h5></div>")}
+        else if(correctAnswers < 8){$("#content").append("<div><h5>Level: Average</h5></div>")}
+        else if(correctAnswers < 10){$("#content").append("<div><h5>Level: Advanced</h5></div>")}
+        else {$("#content").append("<div><h5>Level: Expert</h5></div>")}
+        
         correctAnswers = 0;
         answerChoices = [];
 
